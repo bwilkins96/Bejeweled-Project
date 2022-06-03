@@ -40,7 +40,7 @@ class Screen {
       Screen.backgroundColors.push(new Array(numCols).fill(Screen.defaultBackgroundColor));
     }
 
-    Screen.setQuitMessage("\nThank you for playing! \nGoodbye.\n");
+    Screen.setQuitMessage("\nThank you for playing! :)");
     const quitCmd = new Command('q', 'quit the game', Screen.quit);
     Screen.commands['q'] = quitCmd;
 

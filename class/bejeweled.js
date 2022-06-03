@@ -182,7 +182,7 @@ class Bejeweled {
 
         if (sym === prev && cIdx === row.length - 1) {
           if (counter[prev] >= 3) {
-            matchz.push( {symbol: prev, count: counter[prev], row: rIdx, col: prevIdx, config: "row"} );
+            matchz.push( {symbol: prev, count: counter[prev], row: rIdx, col: cIdx, config: "row"} );
           }
         }
       }
@@ -206,7 +206,7 @@ class Bejeweled {
 
         if (sym === prev && rIdx === grid.length - 1) {
           if (counter[prev] >= 3) {
-            matchz.push( {symbol: prev, count: counter[prev], row: prevIdx, col: cIdx, config: "col"} );
+            matchz.push( {symbol: prev, count: counter[prev], row: rIdx, col: cIdx, config: "col"} );
           }
         }
       }
@@ -282,12 +282,24 @@ class Bejeweled {
       });
     })
 
-    let less = 0;
+    let less = 0; let zero = 0;
     for(let v in counter) {
       if (counter[v] < 3) {less++}
+      if (counter[v] === 0) {zero++}
     }
 
-    if (less === 6) {console.log("You got all possible matches!"); Screen.quit()}
+    let points = 20000 + (zero * 5000);
+    if (less === 6 && zero !== 6) {
+      console.log("\nYou got all possible matches!");
+      console.log(`\nPoints: 20000 + (5000 * ${zero} fully cleared vowels) = ${points}`);
+      Screen.quit();
+    }
+    else if (less === 6 && zero === 6) {
+      points *= 2;
+      console.log("\nYou got all vowels, you are an MVP at this!!!! :)");
+      console.log(`\nPoints: (20000 + (5000 * ${zero} fully cleared vowels)) * 2 for getting all vowels = ${points}`)
+      Screen.quit();
+    }
   }
 
 
